@@ -22222,7 +22222,3 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
-
-.home {
-  font-size: 15px;
-}
