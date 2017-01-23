@@ -12,6 +12,7 @@ import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { SairPage } from '../pages/sair/sair';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,6 +25,7 @@ import { SairPage } from '../pages/sair/sair';
     AjudaPage,
     ConfiguracoesPage,
     SairPage
+
   ],
   imports: [
     IonicModule.forRoot(MyApp)

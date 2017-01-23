@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { BuscaProdutoService } from '../../providers/busca-produto-service';
 
 /*
   Generated class for the Enderecos page.
@@ -9,14 +10,26 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-enderecos',
-  templateUrl: 'enderecos.html'
+  templateUrl: 'enderecos.html',
+  providers: [BuscaProdutoService]
 })
 export class EnderecosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private buscaProdutoService : BuscaProdutoService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EnderecosPage');
+  }
+
+  buscarCep() : void {
+    this.buscaProdutoService.getProduto('90620130')
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
 }
