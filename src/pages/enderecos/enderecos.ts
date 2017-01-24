@@ -26,7 +26,8 @@ export class EnderecosPage {
   buscarCep() : void {
     this.buscaProdutoService.getProduto('90620130')
       .then((res) => {
-        console.log(res);
+        let json = res.json();
+        console.log(json);
       }).catch((err) => {
         console.log(err);
       });
