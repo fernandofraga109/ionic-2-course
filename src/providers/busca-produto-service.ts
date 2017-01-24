@@ -12,7 +12,8 @@ export class BuscaProdutoService {
   }
 
   getProduto(cep: string) : Promise<Response> {
-    return this.http.get('https://viacep.com.br/ws/'+ cep.trim() +'/json/').toPromise();
+    return this.http.post('http://hml.pharmobile.com.br/api/farmacias/produtos_farmacia/', '{"farm_id": 1}').toPromise();
+    //return this.http.get('https://viacep.com.br/ws/'+ cep.trim() +'/json/').toPromise();
   }
 
 }
