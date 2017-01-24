@@ -10,6 +10,8 @@ import { FaleConoscoPage } from '../pages/fale-conosco/fale-conosco';
 import { AjudaPage } from '../pages/ajuda/ajuda';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { SairPage } from '../pages/sair/sair';
+import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
+import { LoginPage } from '../pages/login/login';
 
 
 
@@ -24,7 +26,9 @@ import { SairPage } from '../pages/sair/sair';
     FaleConoscoPage,
     AjudaPage,
     ConfiguracoesPage,
-    SairPage
+    SairPage,
+    CadastroUsuarioPage,
+    LoginPage
 
   ],
   imports: [
@@ -41,7 +45,9 @@ import { SairPage } from '../pages/sair/sair';
     FaleConoscoPage,
     AjudaPage,
     ConfiguracoesPage,
-    SairPage
+    SairPage,
+    CadastroUsuarioPage,
+    LoginPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

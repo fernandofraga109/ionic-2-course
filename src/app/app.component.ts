@@ -11,6 +11,8 @@ import { FaleConoscoPage } from '../pages/fale-conosco/fale-conosco';
 import { AjudaPage } from '../pages/ajuda/ajuda';
 import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { SairPage } from '../pages/sair/sair';
+import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
+import { LoginPage } from '../pages/login/login';
 
 
 @Component({
@@ -19,6 +21,7 @@ import { SairPage } from '../pages/sair/sair';
 export class MyApp {
   rootPage = HomePage;
   pages: Array<{component: any, title: string, icon: string}>;
+  logado : boolean = false;
 
   constructor(platform: Platform, private menuCtrl: MenuController) {
     platform.ready().then(() => {
@@ -28,16 +31,21 @@ export class MyApp {
       Splashscreen.hide();
     });
 
-    this.pages = [
-      {component: HomePage, title: 'Home', icon: 'home'},
-      {component: PerfilPage, title: 'Perfil', icon: 'menu'},
-      {component: EnderecosPage, title: 'Meus Endereços', icon: 'menu'},
-      {component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'menu'},
-      {component: FaleConoscoPage, title: 'Fale Conosco', icon: 'menu'},
-      {component: AjudaPage, title: 'Ajuda', icon: 'menu'},
-      {component: ConfiguracoesPage, title: 'Configurações', icon: 'menu'},
-      {component: SairPage, title: 'Sair', icon: 'menu'}
-    ];
+    if (this.logado) {
+      this.pages = [
+        {component: HomePage, title: 'Home', icon: 'home'},
+        {component: PerfilPage, title: 'Perfil', icon: 'contact'},
+        {component: EnderecosPage, title: 'Meus Endereços', icon: 'pin'},
+        {component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'basket'},
+        {component: FaleConoscoPage, title: 'Fale Conosco', icon: 'call'},
+        {component: AjudaPage, title: 'Ajuda', icon: 'information'},
+        {component: ConfiguracoesPage, title: 'Configurações', icon: 'cog'},
+        {component: SairPage, title: 'Sair', icon: 'exit'}
+      ];
+    } else {
+      let page : any = LoginPage;
+      this.rootPage = page;
+    }
   }
   //Exemple action to class
   clicked() : void {
