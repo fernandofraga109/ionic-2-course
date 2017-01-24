@@ -11,9 +11,14 @@ export class BuscaProdutoService {
     console.log('Hello BuscaProdutoService Provider');
   }
 
-  getProduto(cep: string) : Promise<Response> {
+  getProduto(codigoProduto: string) : Promise<Response> {
     return this.http.post('http://hml.pharmobile.com.br/api/farmacias/produtos_farmacia/', '{"farm_id": 1}').toPromise();
     //return this.http.get('https://viacep.com.br/ws/'+ cep.trim() +'/json/').toPromise();
+    //return null;
+  }
+
+  getProdutoPorCodigoBarras(codigoBarras : string) : Promise<Response> {
+    return this.http.post('http://hml.pharmobile.com.br/api/produto/busca/', '{"ean":"'+codigoBarras+'"}').toPromise();
   }
 
 }

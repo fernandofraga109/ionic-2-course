@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { BuscaProdutoService } from '../../providers/busca-produto-service';
 
 /*
@@ -15,9 +15,12 @@ import { BuscaProdutoService } from '../../providers/busca-produto-service';
 })
 export class EnderecosPage {
 
+  user: string = 'nome';
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private buscaProdutoService : BuscaProdutoService) {}
+              private buscaProdutoService : BuscaProdutoService,
+              public alertCtrl : AlertController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EnderecosPage');
@@ -28,6 +31,33 @@ export class EnderecosPage {
       .then((res) => {
         let json = res.json();
         console.log(json);
+        let alert = this.alertCtrl.create({
+          title: 'Consumo de serviço',
+          message: json.msg + '',
+
+        /*  inputs: [
+            {
+              name: 'nome',
+              placeholder: 'Seu nome'
+            }
+          ],
+
+          buttons: [
+            {
+              text: 'Cancelar'
+            },
+            {
+              text: 'Ok',
+              handler: (data) => {
+                this.user = data.nome;
+              }
+            }
+        ]*/
+
+          buttons: ['Ok']
+        });
+        alert.present(alert);
+
       }).catch((err) => {
         console.log(err);
       });

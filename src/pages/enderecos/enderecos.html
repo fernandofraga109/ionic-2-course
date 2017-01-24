@@ -18,7 +18,10 @@
 
 
 <ion-content padding>
-
-  <button (click)="buscarCep()" > Request CEP</button>
+  <!--<p> Olá {{ user }}</p> -->
+  <button ion-button  (click)="buscarCep()" block><ion-icon name="home"></ion-icon>Request Farmacias</button>
+  <ion-fab right bottom>
+    <button icon-fab ion-button  (click)="buscarCep()"  ><ion-icon name="add"></ion-icon>add</button>
+  </ion-fab>
 
 </ion-content>
