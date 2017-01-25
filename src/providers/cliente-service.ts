@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -18,7 +18,9 @@ export class ClienteService {
 
   cadastra(user : any) : Promise<Response> {
     console.log('User: ', user);
-    return this.http.post('http://hml.pharmobile.com.br/api/cliente/cadastra/', user).toPromise();
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('http://hml.pharmobile.com.br/api/cliente/cadastra/', user, options).toPromise();
   }
 
 

@@ -33,11 +33,12 @@ export class CadastroUsuarioPage {
       alert.present(alert);
 
     } else {
-        this.user.data_nascimento = this.dataNascimento;
-        this.clienteService.cadastra(this.user)
+        this.user.data_nascimento = '12/12/2050';
+        let jsonEnvia : string = JSON.stringify(this.user);
+        this.clienteService.cadastra('{"cadastro": '+jsonEnvia+'}')
         .then((res) => {
           let json = res.json();
-          console.log("Salvou Cliente!");
+          console.log("Salvou Cliente!", json);
           let alert = this.alertCtrl.create({
             title: 'Cadastro de Usuário',
             message: 'Cadastro efetuado com sucesso!',
