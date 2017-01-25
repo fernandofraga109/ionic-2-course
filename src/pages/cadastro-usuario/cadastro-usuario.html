@@ -14,31 +14,31 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Nome</ion-label>
-      <ion-input name="login" type="text" [(ngModel)]="user.nome"></ion-input>
+      <ion-input name="login" type="text" [(ngModel)]="user.nome" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data de Nascimento</ion-label>
-       <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="dataNascimento"></ion-datetime>
+       <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="dataNascimento" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label floating>CPF</ion-label>
-      <ion-input name="cpf" type="text" [(ngModel)]="user.cpf"></ion-input>
+      <ion-input name="cpf" type="text" mask="999.999.999-99" [(ngModel)]="user.cpf" required ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input name="email" type="text" [(ngModel)]="user.email"></ion-input>
+      <ion-input name="email" type="text" [(ngModel)]="user.email" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Telefone</ion-label>
-      <ion-input name="telefone" type="text" [(ngModel)]="user.telefone"></ion-input>
+      <ion-input name="telefone" type="text" [(ngModel)]="user.telefone" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Senha</ion-label>
-      <ion-input name="password" type="password" [(ngModel)]="user.password"></ion-input>
+      <ion-input name="password" type="password" [(ngModel)]="user.password" required ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Confirmação de Senha</ion-label>
-      <ion-input name="passwordConfirm" type="password" [(ngModel)]="passwordConfirm"></ion-input>
+      <ion-input name="passwordConfirm" type="password" [(ngModel)]="passwordConfirm" required></ion-input>
     </ion-item>
 
   </ion-list>
