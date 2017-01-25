@@ -53,4 +53,8 @@ export class CadastroUsuarioPage {
     }
   }
 
+  cancelar() {
+    this.navCtrl.pop();
+  }
+
 }
