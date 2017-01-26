@@ -12,6 +12,11 @@ import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { SairPage } from '../pages/sair/sair';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 import { LoginPage } from '../pages/login/login';
+import { BuscaPage } from '../pages/busca/busca';
+import { CestaPage } from '../pages/cesta/cesta';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
 
 
 
@@ -28,7 +33,12 @@ import { LoginPage } from '../pages/login/login';
     ConfiguracoesPage,
     SairPage,
     CadastroUsuarioPage,
-    LoginPage
+    LoginPage,
+    BuscaPage,
+    CestaPage,
+    TabsPage,
+    ContactPage,
+    AboutPage
 
   ],
   imports: [
@@ -47,7 +57,12 @@ import { LoginPage } from '../pages/login/login';
     ConfiguracoesPage,
     SairPage,
     CadastroUsuarioPage,
-    LoginPage
+    LoginPage,
+    BuscaPage,
+    CestaPage,
+    TabsPage,
+    ContactPage,
+    AboutPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

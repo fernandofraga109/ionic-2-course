@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
@@ -13,17 +13,23 @@ import { ConfiguracoesPage } from '../pages/configuracoes/configuracoes';
 import { SairPage } from '../pages/sair/sair';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 import { LoginPage } from '../pages/login/login';
+import { BuscaPage } from '../pages/busca/busca';
+import { CestaPage } from '../pages/cesta/cesta';
+import { TabsPage } from '../pages/tabs/tabs';
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage = HomePage;
+  rootPage = TabsPage;
   pages: Array<{component: any, title: string, icon: string}>;
-  logado : boolean = false;
+  logado : boolean = true;
+  @ViewChild('menuContent') navCtrl : NavController
 
-  constructor(platform: Platform, private menuCtrl: MenuController) {
+  constructor(platform: Platform,
+              private menuCtrl: MenuController) {
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -54,7 +60,8 @@ export class MyApp {
 
   openPage(page: any) : void {
     console.log('Opening '+page.title);
-    this.rootPage = page.component;
+    this.navCtrl.push(page.component);
+    //this.rootPage = page.component;
     this.menuCtrl.close();
   }
 }
