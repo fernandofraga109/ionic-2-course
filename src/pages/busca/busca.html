@@ -7,12 +7,12 @@
 </ion-header>
 
 <ion-content >
-  <ion-toolbar>
+
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       <ion-list>
         <ion-item *ngFor="let item of items">
           {{ item }}
         </ion-item>
       </ion-list>
-  </ion-toolbar>
+  
 </ion-content>
