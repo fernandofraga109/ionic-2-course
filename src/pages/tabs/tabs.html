@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+
+    </button>
+    <ion-title>
+     Pharmobile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-tabs>
+  <ion-tab [root]="tab2Root" tabTitle="Buscar" tabIcon="search"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Cesta" tabIcon="basket" tabBadge="3" tabBadgeStyle="secondary"></ion-tab>
+
+    <!--<ion-tab  *ngFor="let t of tabs"  [root]="{{ t.component }}"    tabTitle="{{ t.title }}" tabIcon="{{ t.icon }}"></ion-tab>-->
+</ion-tabs>
