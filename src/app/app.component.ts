@@ -39,7 +39,6 @@ export class MyApp {
 
     if (this.logado) {
       this.pages = [
-        {component: HomePage, title: 'Home', icon: 'home'},
         {component: PerfilPage, title: 'Perfil', icon: 'contact'},
         {component: EnderecosPage, title: 'Meus Endereços', icon: 'pin'},
         {component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'basket'},

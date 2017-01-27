@@ -15,8 +15,7 @@ import { LoginPage } from '../pages/login/login';
 import { BuscaPage } from '../pages/busca/busca';
 import { CestaPage } from '../pages/cesta/cesta';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
 
 
 
@@ -36,9 +35,7 @@ import { ContactPage } from '../pages/contact/contact';
     LoginPage,
     BuscaPage,
     CestaPage,
-    TabsPage,
-    ContactPage,
-    AboutPage
+    TabsPage
 
   ],
   imports: [
@@ -60,9 +57,7 @@ import { ContactPage } from '../pages/contact/contact';
     LoginPage,
     BuscaPage,
     CestaPage,
-    TabsPage,
-    ContactPage,
-    AboutPage
+    TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
