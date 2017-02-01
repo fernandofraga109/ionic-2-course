@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
-/*
-  Generated class for the Cesta page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-cesta',
   templateUrl: 'cesta.html'
 })
 export class CestaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public produtosClienteService :ProdutosClienteService) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CestaPage');
+    console.log('ionViewDidLoad CestaPaged');
+  }
+
+  getProdutos() {
+    return this.produtosClienteService.getProdutos();
   }
 
 }

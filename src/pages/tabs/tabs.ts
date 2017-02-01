@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { BuscaPage } from '../busca/busca';
 import { CestaPage } from '../cesta/cesta';
+import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -12,11 +13,20 @@ export class TabsPage {
 
   tab2Root: any = BuscaPage;
   tab3Root: any = CestaPage;
+  qtdProdutos: number = 0;
 
-  constructor() {
+  constructor(public produtosClienteService :ProdutosClienteService) {
     this.tabs = [
       {component: BuscaPage, title: 'Buscar', icon: 'search'},
       {component: CestaPage, title: 'Cesta', icon: 'basket'}
     ];
   }
+
+  getQtdProdutos() {
+    this.qtdProdutos = this.produtosClienteService.getQtdProdutos();
+    return this.qtdProdutos;
+  }
+
+
+
 }

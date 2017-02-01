@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
 /*
   Generated class for the ProdutoDetalhes page.
@@ -15,14 +16,35 @@ export class ProdutoDetalhesPage {
 
     produto: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public produtosClienteService :ProdutosClienteService,
+              public toastCtrl: ToastController) {
     this.produto = navParams;
     this.produto = this.produto.data;
-    console.log(this.produto,'aquiiii!');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProdutoDetalhesPage');
+  }
+
+
+  addProdutoCesta(produto) : void {
+    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
+      let toast = this.toastCtrl.create({
+        message: 'Produto já esta na cesta de compras.',
+        duration: 3000
+      });
+      toast.present();
+    } else {
+      this.produtosClienteService.addProduto(produto);
+
+      let toast = this.toastCtrl.create({
+        message: ''+ produto.prod_nome +' adicionado a cesta de compras.',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
 }

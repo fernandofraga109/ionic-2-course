@@ -6,7 +6,7 @@ import { ProdutoDetalhesPage } from '../produto-detalhes/produto-detalhes';
 @Component({
   selector: 'page-busca',
   templateUrl: 'busca.html',
-  providers: [BuscaProdutoService]
+  
 })
 export class BuscaPage {
 

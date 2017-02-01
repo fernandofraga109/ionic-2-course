@@ -14,32 +14,29 @@
 
 
 <ion-content padding>
-<ion-card>
-  <img src="../../../assets/tparacetamo.jpeg">
+  <ion-list>
+    <ion-item *ngFor="let item of getProdutos()">
 
- <ion-card-content>
-   <p> Para ajudá-lo(a) no alívio responsável da dor, nós estamos disponibilizando informações de uso de TYLENOL®</p>
- </ion-card-content>
+      <ion-card >
+        <img src="{{ item.prod_url_img }}" small>
 
- <ion-row>
-   <ion-col>
-     <button ion-button icon-left clear small>
-       <ion-icon name="thumbs-up"></ion-icon>
-       <div>12 Likes</div>
-     </button>
-   </ion-col>
-   <ion-col>
-     <button ion-button icon-left clear small>
-       <div>500 mg</div>
-     </button>
-   </ion-col>
-   <ion-col center text-center>
-      <button ion-button icon-left clear small>
-       750 mg
-     </button>
-   </ion-col>
- </ion-row>
+       <ion-card-content>
+         <p> {{ item.prod_nome }}</p>
+       </ion-card-content>
 
-</ion-card>
+       <ion-row>
+         <ion-col>
+           <button ion-button icon-left clear small>
+             <ion-icon name="add-circle"></ion-icon>
+             <div>R$ {{ item.pf_valor }},00</div>
+           </button>
+         </ion-col>
+       </ion-row>
+
+      </ion-card>
+
+
+    </ion-item>
+  </ion-list>
 
 </ion-content>

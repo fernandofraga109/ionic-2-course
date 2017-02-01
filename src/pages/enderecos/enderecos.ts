@@ -10,8 +10,7 @@ import { BuscaProdutoService } from '../../providers/busca-produto-service';
 */
 @Component({
   selector: 'page-enderecos',
-  templateUrl: 'enderecos.html',
-  providers: [BuscaProdutoService]
+  templateUrl: 'enderecos.html'
 })
 export class EnderecosPage {
 

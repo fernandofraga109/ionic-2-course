@@ -5,8 +5,8 @@ import { ClienteService } from '../../providers/cliente-service';
 
 @Component({
   selector: 'page-cadastro-usuario',
-  templateUrl: 'cadastro-usuario.html',
-  providers : [ClienteService]
+  templateUrl: 'cadastro-usuario.html'
+
 })
 export class CadastroUsuarioPage {
 

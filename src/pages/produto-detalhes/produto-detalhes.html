@@ -18,11 +18,31 @@
 
        <ion-row>
          <ion-col>
-           <button ion-button icon-left clear small>
-             <ion-icon name="add-circle"></ion-icon>
-             <div>R$ {{ produto.prod_valor }},00</div>
-           </button>
+           <div>R$ {{ produto.pf_valor }},00</div>
          </ion-col>
+       </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button item-right icon-left small (click)="decrementaQtd()">
+             <ion-icon name="remove-circle"></ion-icon>
+          </button>
+         {{produto.quantidade}}
+         <button ion-button item-right icon-left small (click)="incrementaQtd()">
+           <ion-icon name="add-circle"></ion-icon>
+         </button>
+        </ion-col>
+
+      </ion-row>
+
+       <ion-row>
+
+         <ion-col>
+           <button ion-button item-right icon-left  full (click)="addProdutoCesta(produto)">
+            <ion-icon name="add-circle"></ion-icon>
+              ADICIONAR NA CESTA
+          </button>
+        </ion-col>
        </ion-row>
 
       </ion-card>

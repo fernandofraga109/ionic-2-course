@@ -13,20 +13,14 @@
         <ion-item *ngFor="let item of items">
 
           <ion-card (click)="openDetalhesProduto(item)">
-            <img src="{{ item.prod_url_img }}" small>
+            <div class="alinhamentoCentro">
+              <img src="{{ item.prod_url_img }}" >
+            </div>
 
            <ion-card-content>
              <p> {{ item.prod_nome }}</p>
+             <p>R$ {{ item.pf_valor }},00</p>
            </ion-card-content>
-
-           <ion-row>
-             <ion-col>
-               <button ion-button icon-left clear small>
-                 <ion-icon name="add-circle"></ion-icon>
-                 <div>R$ {{ item.prod_valor }},00</div>
-               </button>
-             </ion-col>
-           </ion-row>
 
           </ion-card>
 

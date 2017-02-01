@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+//pages
 import { HomePage } from '../pages/home/home';
 import { MenuTestPage } from '../pages/menu-test/menu-test';
 import { PerfilPage } from '../pages/perfil/perfil';
@@ -16,11 +16,16 @@ import { LoginPage } from '../pages/login/login';
 import { BuscaPage } from '../pages/busca/busca';
 import { CestaPage } from '../pages/cesta/cesta';
 import { TabsPage } from '../pages/tabs/tabs';
-
+//prividers
+import { ClienteService } from '../providers/cliente-service';
+import { BuscaProdutoService } from '../providers/busca-produto-service';
+import { ProdutosClienteService } from '../providers/produtos-cliente-service';
 
 
 @Component({
   templateUrl: 'app.html',
+  providers: [BuscaProdutoService, ClienteService, ProdutosClienteService]
+
 })
 export class MyApp {
   rootPage = TabsPage;
