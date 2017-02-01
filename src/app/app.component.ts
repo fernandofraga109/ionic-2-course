@@ -18,6 +18,7 @@ import { CestaPage } from '../pages/cesta/cesta';
 import { TabsPage } from '../pages/tabs/tabs';
 
 
+
 @Component({
   templateUrl: 'app.html',
 })

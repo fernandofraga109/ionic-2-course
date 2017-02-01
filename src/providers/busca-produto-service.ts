@@ -20,5 +20,8 @@ export class BuscaProdutoService {
   getProdutoPorCodigoBarras(codigoBarras : string) : Promise<Response> {
     return this.http.post('http://hml.pharmobile.com.br/api/produto/busca/', '{"ean":"'+codigoBarras+'"}').toPromise();
   }
+  getProdutoPorNome(nomeProduto : string) : Promise<Response> {
+    return this.http.post('http://hml.pharmobile.com.br/api/produto/busca/', '{"produto":"'+nomeProduto+'"}').toPromise();
+  }
 
 }

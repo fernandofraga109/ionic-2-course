@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Detalhes do Produto
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+
+      <ion-card >
+        <img src="{{ produto.prod_url_img }}" small>
+
+       <ion-card-content>
+         <p> {{ produto.prod_nome }}</p>
+       </ion-card-content>
+
+       <ion-row>
+         <ion-col>
+           <button ion-button icon-left clear small>
+             <ion-icon name="add-circle"></ion-icon>
+             <div>R$ {{ produto.prod_valor }},00</div>
+           </button>
+         </ion-col>
+       </ion-row>
+
+      </ion-card>
+
+
+
+
+</ion-content>
