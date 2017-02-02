@@ -14,42 +14,33 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let produto of getProdutos()">
 
-      <ion-card >
-        <img src="{{ produto.prod_url_img }}" small>
+<ion-grid>
+  <ion-row>
+    <ion-col width-50>Itens</ion-col>
+    <ion-col width-25>Qtd.</ion-col>
+    <ion-col width-25>Valor</ion-col>
+  </ion-row>
+  
+  <ion-row *ngFor="let produto of getProdutos()">
+    <ion-col width-50>
+    	<img src="{{ produto.prod_url_img }}" >
+    	<br />
+    	<div><p> {{ produto.prod_nome }}</p></div>
+    </ion-col>
+    <ion-col width-25>
+    
+   		<ion-icon name="remove-circle"(click)="decrementaQtd" small color="primary"></ion-icon>
+		{{produto.quantidade}}
+		<ion-icon name="add-circle"(click)="incrementaQtd(produto)" small color="primary"></ion-icon>
+			
+	</ion-col>
+    <ion-col width-25><div>R$ {{ produto.pf_valor }},00</div></ion-col>
+  </ion-row>
+  
+  
+</ion-grid>
 
-       <ion-card-content>
-         <p> {{ produto.prod_nome }}</p>
-       </ion-card-content>
-
-       <ion-row>
-         <ion-col>
-           <button ion-button icon-left clear small>
-             <ion-icon name="add-circle"></ion-icon>
-             <div>R$ {{ produto.pf_valor }},00</div>
-           </button>
-         </ion-col>
-       </ion-row> 
-       <ion-row> <ion-col>
-			<button ion-button item-right icon-left small
-				(click)="decrementaQtd(produto)">
-				<ion-icon name="remove-circle"></ion-icon>
-			</button>
-			{{produto.quantidade}}
-			<button ion-button item-right icon-left small
-				(click)="incrementaQtd(produto)">
-				<ion-icon name="add-circle"></ion-icon>
-			</button>
-			</ion-col> 
-		</ion-row>
-       
-
-      </ion-card>
-
-
-    </ion-item>
-  </ion-list>
+  
 
 </ion-content>
