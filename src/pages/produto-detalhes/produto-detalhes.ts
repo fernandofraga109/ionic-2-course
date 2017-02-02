@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
-/*
-  Generated class for the ProdutoDetalhes page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-produto-detalhes',
   templateUrl: 'produto-detalhes.html'
