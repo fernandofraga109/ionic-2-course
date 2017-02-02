@@ -18,16 +18,39 @@ export class ProdutosClienteService {
   }
 
   removeProduto(produto) {
-    this.produtos = this.produtos.filter(prod => prod !== produto);
+    this.produtos = this.produtos.filter(prod => prod.prod_id !== produto.prod_id);
   }
 
-  produtoJaNaCesta(produto) : boolean {
-    let p = this.produtos.filter(prod => prod === produto);
-    if (p.length>0) {
+  produtoJaNaCesta(produto): boolean {
+
+    let c = this.produtos.filter(item => item.prod_id == produto.prod_id);
+    //let p = this.produtos.filter(prod => prod === produto);
+    if (c.length > 0) {
       return true;
     }
     return false;
   }
+
+  decrementaQtdProduto(produto) {
+    if (produto.quantidade > 1) {
+      for (let i = 0; i < this.produtos.length; i++) {
+        if (this.produtos[i].prod_id = produto.prod_id) {
+          this.produtos[i].quantidade = produto.quantidade-1;
+        }
+      }
+    }
+  }
+    
+  incrementaQtdProduto(produto) {
+    for (let i = 0; i < this.produtos.length; i++) {
+      console.log(this.produtos[i], 'iterate');
+      console.log(produto, 'produto');
+      if (this.produtos[i].prod_id = produto.prod_id) {
+        this.produtos[i].quantidade = produto.quantidade+1;
+      }
+    }
+  }
+
 
   getProdutos() {
     return this.produtos;

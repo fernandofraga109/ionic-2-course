@@ -20,5 +20,18 @@ export class CestaPage {
   getProdutos() {
     return this.produtosClienteService.getProdutos();
   }
+  
+  
+  decrementaQtd(produto) : void {
+    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
+      this.produtosClienteService.decrementaQtdProduto(produto);
+    }
+  }
+  
+  incrementaQtd(produto) : void {
+    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
+      this.produtosClienteService.incrementaQtdProduto(produto);
+    } 
+  }
 
 }

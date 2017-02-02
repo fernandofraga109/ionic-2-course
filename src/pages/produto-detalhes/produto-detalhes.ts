@@ -40,5 +40,26 @@ export class ProdutoDetalhesPage {
       toast.present();
     }
   }
+  
+  decrementaQtd(produto) : void {
+    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
+      this.produtosClienteService.decrementaQtdProduto(produto);
+    } else {
+        if (produto.quantidade > 1) {
+        this.produto.quantidade = produto.quantidade-1;
+      }
+    }
+  }
+  
+  incrementaQtd(produto) : void {
+    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
+      this.produtosClienteService.incrementaQtdProduto(produto);
+    } else {
+    
+      console.log('incrmenta');
+      this.produto.quantidade = produto.quantidade+1;
+    }
+  }
+  
 
 }
