@@ -34,7 +34,7 @@ export class ProdutosClienteService {
   decrementaQtdProduto(produto) {
     if (produto.quantidade > 1) {
       for (let i = 0; i < this.produtos.length; i++) {
-        if (this.produtos[i].prod_id = produto.prod_id) {
+        if (this.produtos[i].prod_id == produto.prod_id) {
           this.produtos[i].quantidade = produto.quantidade-1;
         }
       }
@@ -45,7 +45,7 @@ export class ProdutosClienteService {
     for (let i = 0; i < this.produtos.length; i++) {
       console.log(this.produtos[i], 'iterate');
       console.log(produto, 'produto');
-      if (this.produtos[i].prod_id = produto.prod_id) {
+      if (this.produtos[i].prod_id == produto.prod_id) {
         this.produtos[i].quantidade = produto.quantidade+1;
       }
     }
