@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { BuscaPage } from '../busca/busca';
+import { CodigoBarrasPage } from '../codigo-barras/codigo-barras';
 import { CestaPage } from '../cesta/cesta';
 import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
@@ -13,6 +14,7 @@ export class TabsPage {
 
   tab2Root: any = BuscaPage;
   tab3Root: any = CestaPage;
+  tab4Root: any = CodigoBarrasPage;
   qtdProdutos: number = 0;
 
   constructor(public produtosClienteService :ProdutosClienteService) {

@@ -14,6 +14,7 @@ import { SairPage } from '../pages/sair/sair';
 import { CadastroUsuarioPage } from '../pages/cadastro-usuario/cadastro-usuario';
 import { LoginPage } from '../pages/login/login';
 import { BuscaPage } from '../pages/busca/busca';
+import { CodigoBarrasPage } from '../pages/codigo-barras/codigo-barras';
 import { CestaPage } from '../pages/cesta/cesta';
 import { TabsPage } from '../pages/tabs/tabs';
 //prividers

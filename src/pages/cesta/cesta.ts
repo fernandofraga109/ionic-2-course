@@ -61,6 +61,32 @@ export class CestaPage {
     }
   }
   
+   cancelar() : void {
+    
+      let confirm = this.alertCtrl.create({
+      title: 'Confirmacao',
+      message: 'Confirma o cancelamento esvaziar a cesta de compras? ',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.produtosClienteService.removeTodosProdutos();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  
+      
+    
+  }
+  
   incrementaQtd(produto) : void {
     if (this.produtosClienteService.produtoJaNaCesta(produto)) {
       this.produtosClienteService.incrementaQtdProduto(produto);

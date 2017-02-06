@@ -20,6 +20,10 @@ export class ProdutosClienteService {
   removeProduto(produto) {
     this.produtos = this.produtos.filter(prod => prod.prod_id !== produto.prod_id);
   }
+  
+  removeTodosProdutos() {
+    this.produtos = [];
+  }
 
   produtoJaNaCesta(produto): boolean {
 

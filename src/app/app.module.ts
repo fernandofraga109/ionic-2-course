@@ -15,6 +15,7 @@ import { LoginPage } from '../pages/login/login';
 import { BuscaPage } from '../pages/busca/busca';
 import { CestaPage } from '../pages/cesta/cesta';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CodigoBarrasPage } from '../pages/codigo-barras/codigo-barras';
 import { ProdutoDetalhesPage } from '../pages/produto-detalhes/produto-detalhes';
 
 
@@ -37,7 +38,8 @@ import { ProdutoDetalhesPage } from '../pages/produto-detalhes/produto-detalhes'
     BuscaPage,
     CestaPage,
     TabsPage,
-    ProdutoDetalhesPage
+    ProdutoDetalhesPage,
+    CodigoBarrasPage
 
   ],
   imports: [
@@ -60,7 +62,8 @@ import { ProdutoDetalhesPage } from '../pages/produto-detalhes/produto-detalhes'
     BuscaPage,
     CestaPage,
     TabsPage,
-    ProdutoDetalhesPage
+    ProdutoDetalhesPage,
+    CodigoBarrasPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
