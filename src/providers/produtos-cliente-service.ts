@@ -50,6 +50,14 @@ export class ProdutosClienteService {
       }
     }
   }
+  
+  getTotalValorItens() {
+    let total :number = 0.0;
+    for (let i = 0; i < this.produtos.length; i++) {
+        total = total +this.produtos[i].pf_valor;
+     }
+    return total
+  }
 
 
   getProdutos() {

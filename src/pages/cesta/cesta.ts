@@ -26,6 +26,10 @@ export class CestaPage {
     return this.produtosClienteService.getQtdProdutos();
   }
   
+  getTotalValorItens() {
+    return this.produtosClienteService.getTotalValorItens();
+  }
+  
   decrementaQtd(produto) : void {
     if (produto.quantidade == 1) {
       let confirm = this.alertCtrl.create({
