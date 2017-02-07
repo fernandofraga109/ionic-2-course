@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BuscaProdutoService } from '../../providers/busca-produto-service';
 import { ProdutoDetalhesPage } from '../produto-detalhes/produto-detalhes';
+import { BarcodeScanner } from 'ionic-native';
+
+
+
 
 /*
   Generated class for the CodigoBarras page.
@@ -17,14 +21,26 @@ export class CodigoBarrasPage {
   
   searchQuery: string = '';
   items: any[];
+  barcodeDate: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public buscaProdutoService : BuscaProdutoService) {}
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public buscaProdutoService : BuscaProdutoService) {}
   
   
    initializeItems() {
 
   }
   
+  scan() {
+      BarcodeScanner.scan().then((barcodeData) => {
+        this.barcodeDate = barcodeData;
+        this.searchQuery = this.barcodeDate.text;
+      }, (err) => {
+          // An error occurred
+      });
+  
+  }
   
   getItems(ev: any) {
     // Reset items back to all of the items

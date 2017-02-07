@@ -1,51 +1,69 @@
-<ion-content padding>
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Cesta
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
-	<ion-grid>
-	 <ion-row>
-	    <ion-col width-50>{{ getQtdProdutos() }} Itens</ion-col>
-	    <ion-col width-25>Qtd.</ion-col>
-	    <ion-col width-25>Valor</ion-col>
-	  </ion-row>
+<ion-content >
+	<ion-toolbar>
+	  
+		<ion-grid>
+		 <ion-row>
+		    <ion-col width-50>{{ getQtdProdutos() }} Itens</ion-col>
+		    <ion-col width-25>Qtd.</ion-col>
+		    <ion-col width-25>Valor</ion-col>
+		  </ion-row>
+		 </ion-grid> 
+	</ion-toolbar>	
 	
 	
-	  <ion-row *ngFor="let produto of getProdutos()">
-	    <ion-col width-50>
-	    	<img src="{{ produto.prod_url_img }}" >
-	    	<br />
-	    	<div><p> {{ produto.prod_nome }}</p></div>
-	    </ion-col>
-	    <ion-col width-25>
-	    
-	   		<ion-icon name="remove-circle"(click)="decrementaQtd(produto)" small color="primary"></ion-icon>
-			{{produto.quantidade}}
-			<ion-icon name="add-circle"(click)="incrementaQtd(produto)" small color="primary"></ion-icon>
-				
-		</ion-col>
-	    <ion-col width-25><div>R$ {{ produto.pf_valor }},00</div></ion-col>
-	  </ion-row>
-  
-  
-	</ion-grid>
+		<ion-grid>
+		  <ion-row *ngFor="let produto of getProdutos()">
+		    <ion-col width-50>
+		    	<img src="{{ produto.prod_url_img }}" >
+		    	<br />
+		    	<div><p style="font-size:10px"> {{ produto.prod_nome }}</p></div>
+		    </ion-col>
+		    <ion-col width-25>
+		    
+		   		<ion-icon name="remove-circle"(click)="decrementaQtd(produto)" small color="primary"></ion-icon>
+				{{produto.quantidade}}
+				<ion-icon name="add-circle"(click)="incrementaQtd(produto)" small color="primary"></ion-icon>
+					
+			</ion-col>
+		    <ion-col width-25><div>R$ {{ produto.pf_valor }},00</div></ion-col>
+		  </ion-row>
+	  
+	  
+		</ion-grid>
+		
+		<ion-title *ngIf="getTotalValorItens() == 0 || getTotalValorItens()==null">
+			Não há itens na cesta de pedidos
+		</ion-title>
 
-<ion-footer>
+
+<ion-footer *ngIf="getTotalValorItens() > 0" >
   <ion-toolbar>
   
   	<ion-grid>
 	  <ion-row>
-	    <ion-col width-50>Total R$ {{ getTotalValorItens() }},00 </ion-col>
-	    <ion-col width-25>
+	    
+	    <ion-col width-33>
 	     <button ion-button item-right icon-left full (click)="comprar()">
             <ion-icon ></ion-icon>
               COMPRAR
           </button>
          </ion-col> 
-          <ion-col width-25>
+          <ion-col width-33>
 	    	<button ion-button item-right icon-left  full (click)="cancelar()">
             <ion-icon ></ion-icon>
               CANCELAR
           </button>
 	    
 	     </ion-col>
+	     <ion-col width-33>Total R$ {{ getTotalValorItens() }},00 </ion-col>
 	  </ion-row>
   
   
@@ -58,3 +76,5 @@
   
 
 </ion-content>
+
+

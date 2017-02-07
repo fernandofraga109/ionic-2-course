@@ -8,7 +8,7 @@
 
 <ion-content >
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+      <button ion-button item-right icon-left full block (click)="scan()">Scan Código de Barras</button>
       <ion-list>
         <ion-item *ngFor="let item of items">
 
@@ -26,6 +26,7 @@
 
 
         </ion-item>
-      </ion-list>
+       </ion-list>
+     
 
 </ion-content>
