@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
-import { SqlService } from '../../providers/sql-service';
+import { ProdutosClienteSqlService } from '../../providers/produtos-cliente-sql-service';
+
+
 
 @Component({
   selector: 'page-produto-detalhes',
@@ -15,7 +17,7 @@ export class ProdutoDetalhesPage {
               public navParams: NavParams,
               public produtosClienteService :ProdutosClienteService,
               public toastCtrl: ToastController,
-              public sqlService: SqlService) {
+              public produtosClienteSqlService: ProdutosClienteSqlService) {
     this.produto = navParams;
     this.produto = this.produto.data;
   }
@@ -34,11 +36,10 @@ export class ProdutoDetalhesPage {
       toast.present();
     } else {
       this.produtosClienteService.addProduto(produto);
-      console.log(produto, "proddd");
-      this.sqlService.removeAll();
+      this.produtosClienteSqlService.removeAll();
       let jsonEnvia : string = JSON.stringify(produto);
-      this.sqlService.set(produto.prod_id, jsonEnvia);
-      this.sqlService.get(produto.prod_id).then((res) => {
+      this.produtosClienteSqlService.set(produto.prod_id, jsonEnvia);
+      this.produtosClienteSqlService.get(produto.prod_id).then((res) => {
           console.log(JSON.parse(res), 'agora vai');
 
         }).catch((err) => {

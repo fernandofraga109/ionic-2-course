@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 const DB_NAME: string = '__ionicstorage';
 const win: any = window;
 
-@Injectable()
-export class SqlService {
+export abstract class SqlService {
   private _db: any;
+  public table = 'kv';
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public tab :any) {
+    if (tab !=null) {
+    this.table = tab;
+    }
     this.platform.ready().then(() => {
       if (win.sqlitePlugin) {
         this._db = win.sqlitePlugin.openDatabase({
@@ -23,10 +25,12 @@ export class SqlService {
       this._tryInit();
     });
   }
+  
+  
 
   /** Initialize the DB with our required tables */
   _tryInit() {
-    this.query('CREATE TABLE IF NOT EXISTS kv (key text primary key, value text)')
+    this.query('CREATE TABLE IF NOT EXISTS '+this.table+' (key text primary key, value text)')
       .catch(err => {
         console.error('Unable to create initial storage tables', err.tx, err.err);
       });
@@ -59,7 +63,17 @@ export class SqlService {
 
   /** GET the value in the database identified by the given key. */
   get(key: string): Promise<any> {
-    return this.query('select key, value from kv where key = ? limit 1', [key])
+    return this.query('select key, value from '+this.table+' where key = ? limit 1', [key])
+      .then(data => {
+        if (data.res.rows.length > 0) {
+          return data.res.rows.item(0).value;
+        }
+      });
+  }
+  
+    /** GET all registers */
+  getAll(key: string): Promise<any> {
+    return this.query('select key, value from '+this.table)
       .then(data => {
         if (data.res.rows.length > 0) {
           return data.res.rows.item(0).value;
@@ -69,15 +83,15 @@ export class SqlService {
 
   /** SET the value in the database for the given key. */
   set(key: string, value: any): Promise<any> {
-    return this.query('insert into kv(key, value) values (?, ?)', [key, value]);
+    return this.query('insert into '+this.table+ ' (key, value) values (?, ?)', [key, value]);
   }
 
   /** REMOVE the value in the database for the given key. */
   remove(key: string): Promise<any> {
-    return this.query('delete from kv where key = ?', [key]);
+    return this.query('delete from '+this.table+' where key = ?', [key]);
   }
   
   removeAll(): Promise<any> {
-    return this.query('delete from kv');
+    return this.query('delete from '+this.table+'');
   }
 }
