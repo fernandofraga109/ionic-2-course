@@ -67,16 +67,16 @@ export abstract class SqlService {
       .then(data => {
         if (data.res.rows.length > 0) {
           return data.res.rows.item(0).value;
-        }
+        } else return null;
       });
   }
   
     /** GET all registers */
-  getAll(key: string): Promise<any> {
+  getAll(): Promise<any> {
     return this.query('select key, value from '+this.table)
       .then(data => {
         if (data.res.rows.length > 0) {
-          return data.res.rows.item(0).value;
+          return data.res.rows;
         }
       });
   }
@@ -84,6 +84,10 @@ export abstract class SqlService {
   /** SET the value in the database for the given key. */
   set(key: string, value: any): Promise<any> {
     return this.query('insert into '+this.table+ ' (key, value) values (?, ?)', [key, value]);
+  }
+  
+  update(key: string, value: any): Promise<any> {
+    return this.query('updade '+this.table+ ' set value = ?  where key = ?)', [value, key]);
   }
 
   /** REMOVE the value in the database for the given key. */

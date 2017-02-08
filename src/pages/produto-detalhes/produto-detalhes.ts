@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
-import { ProdutosClienteSqlService } from '../../providers/produtos-cliente-sql-service';
+
 
 
 
@@ -16,8 +16,7 @@ export class ProdutoDetalhesPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public produtosClienteService :ProdutosClienteService,
-              public toastCtrl: ToastController,
-              public produtosClienteSqlService: ProdutosClienteSqlService) {
+              public toastCtrl: ToastController) {
     this.produto = navParams;
     this.produto = this.produto.data;
   }
@@ -28,6 +27,7 @@ export class ProdutoDetalhesPage {
 
 
   addProdutoCesta(produto) : void {
+    
     if (this.produtosClienteService.produtoJaNaCesta(produto)) {
       let toast = this.toastCtrl.create({
         message: 'Produto já esta na cesta de compras.',
@@ -36,9 +36,10 @@ export class ProdutoDetalhesPage {
       toast.present();
     } else {
       this.produtosClienteService.addProduto(produto);
-      this.produtosClienteSqlService.removeAll();
+      
+      
       let jsonEnvia : string = JSON.stringify(produto);
-      this.produtosClienteSqlService.set(produto.prod_id, jsonEnvia);
+      /*this.produtosClienteSqlService.set(produto.prod_id, jsonEnvia);
       this.produtosClienteSqlService.get(produto.prod_id).then((res) => {
           console.log(JSON.parse(res), 'agora vai');
 
@@ -46,7 +47,7 @@ export class ProdutoDetalhesPage {
           console.log(err);
         });
       
-      
+      */
 
       let toast = this.toastCtrl.create({
         message: ''+ produto.prod_nome +' adicionado a cesta de compras.',
