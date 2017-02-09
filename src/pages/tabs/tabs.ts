@@ -30,14 +30,11 @@ export class TabsPage {
     return this.produtos.length;
   }
   
-    ionViewWillEnter() {
-    this.mudouAba();
-    console.log('ionViewDidLoad tabPage');
-  }
   
-  ionViewDidLoad() {
+  
+   ionViewDidEnter() {
     this.mudouAba();
-    console.log('ionViewDidLoad tabPage');
+    console.log('ionV');
   }
   
   mudouAba() {

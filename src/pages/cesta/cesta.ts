@@ -27,17 +27,14 @@ export class CestaPage {
       if (res !=null) {
         
        for (let i = 0; i < res.length; i++) {
-         console.log(i,"ENTROU NO ÇACO");
-       
-         this.produtos.push(JSON.parse(res[i].value));
-        }
+           this.produtos.push(JSON.parse(res[i].value));
+       }
       } else {
         console.log(res,"NENHUM PRODUTO");
       } 
 
       }).catch((err) => {
         console.log(err);
-        return false;
       });
     
   }
@@ -47,17 +44,10 @@ export class CestaPage {
     console.log('ionViewDidLoad CestaPaged');
   }
   
-  ionViewDidLoad() {
-    this.carregaProdutos();
-    console.log('ionViewDidLoad CestaPaged');
-  }
+
   
   
 
-  getProdutos() {
-    return this.produtos;
-  }
-  
   getQtdProdutos() {
     return this.produtos.length;
   }
@@ -65,7 +55,7 @@ export class CestaPage {
   getTotalValorItens() {
     let total :number = 0.0;
     for (let i = 0; i < this.produtos.length; i++) {
-        total = total +this.produtos[i].pf_valor;
+        total = total +this.produtos[i].pf_valor*this.produtos[i].quantidade;
      }
     return total
   }
@@ -85,9 +75,17 @@ export class CestaPage {
         {
           text: 'Confirmar',
           handler: () => {
-            this.produtosClienteService.remove(produto.prod_id);
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);  
-          
+            this.produtosClienteService.remove(produto.prod_id).then((res) => {
+              if (res !=null) {
+               this.carregaProdutos(); 
+               
+              } else {
+                console.log(res);
+              } 
+        
+              }).catch((err) => {
+                console.log(err);
+              });
           }
         }
       ]
@@ -98,9 +96,17 @@ export class CestaPage {
     } else {
        
       produto.quantidade = produto.quantidade-1; 
-      this.produtosClienteService.updateProduto(produto);
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
-      
+      this.produtosClienteService.update(produto.prod_id, JSON.stringify(produto)).then((res) => {
+        if (res !=null) {
+         this.carregaProdutos(); 
+         
+        } else {
+          console.log(res);
+        } 
+  
+      }).catch((err) => {
+        console.log(err);
+      });
     }
   }
   
@@ -119,8 +125,8 @@ export class CestaPage {
         {
           text: 'Confirmar',
           handler: () => {
-            this.produtosClienteService.removeTodosProdutos();
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);  
+            this.produtosClienteService.removeAll();
+            this.carregaProdutos();
           }
         }
       ]
@@ -133,8 +139,18 @@ export class CestaPage {
   
   incrementaQtd(produto) : void {
     produto.quantidade = produto.quantidade+1; 
-    this.produtosClienteService.updateProduto(produto);
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    this.produtosClienteService.update(produto.prod_id, JSON.stringify(produto)).then((res) => {
+      if (res !=null) {
+       this.carregaProdutos(); 
+       
+      } else {
+        console.log(res,"NENHUM PRODUTO");
+      } 
+
+      }).catch((err) => {
+        console.log(err);
+      });
+    
   }
 
 }

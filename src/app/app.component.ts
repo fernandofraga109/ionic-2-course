@@ -21,12 +21,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ClienteService } from '../providers/cliente-service';
 import { BuscaProdutoService } from '../providers/busca-produto-service';
 import { ProdutosClienteService } from '../providers/produtos-cliente-service';
-import { ProdutosClienteSqlService } from '../providers/produtos-cliente-sql-service';
+
 
 
 @Component({
   templateUrl: 'app.html',
-  providers: [BuscaProdutoService, ClienteService, ProdutosClienteService, ProdutosClienteSqlService]
+  providers: [BuscaProdutoService, ClienteService, ProdutosClienteService]
 
 })
 export class MyApp {
