@@ -16,19 +16,47 @@ export class TabsPage {
   tab3Root: any = CestaPage;
   tab4Root: any = CodigoBarrasPage;
   qtdProdutos: number = 0;
+  produtos: any[];
 
   constructor(public produtosClienteService :ProdutosClienteService) {
     this.tabs = [
       {component: BuscaPage, title: 'Buscar', icon: 'search'},
       {component: CestaPage, title: 'Cesta', icon: 'basket'}
     ];
+    this.produtos = [];
   }
 
   getQtdProdutos() {
-    this.qtdProdutos = this.produtosClienteService.getQtdProdutos();
-    return this.qtdProdutos;
+    return this.produtos.length;
   }
+  
+    ionViewWillEnter() {
+    this.mudouAba();
+    console.log('ionViewDidLoad tabPage');
+  }
+  
+  ionViewDidLoad() {
+    this.mudouAba();
+    console.log('ionViewDidLoad tabPage');
+  }
+  
+  mudouAba() {
+    this.produtos = [];
+    this.produtosClienteService.getAll().then((res) => {
+      if (res !=null) {
+        
+       for (let i = 0; i < res.length; i++) {
+          this.produtos.push(JSON.parse(res[i].value));
+        }
+      } else {
+        console.log(res,"NENHUM PRODUTO");
+      } 
 
-
-
+      }).catch((err) => {
+        console.log(err);
+        return false;
+      });
+  }
+ 
+  
 }

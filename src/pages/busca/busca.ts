@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { BuscaProdutoService } from '../../providers/busca-produto-service';
 import { ProdutoDetalhesPage } from '../produto-detalhes/produto-detalhes';
 
@@ -14,8 +15,9 @@ export class BuscaPage {
   items: any[];
 
   constructor(public navCtrl: NavController,
+              public modalCtrl: ModalController,
               public navParams: NavParams,
-              public buscaProdutoService : BuscaProdutoService) {
+              public buscaProdutoService : BuscaProdutoService, private app: App) {
     this.initializeItems();
 
   }
@@ -49,8 +51,11 @@ export class BuscaPage {
     console.log('Opening '+produto.nome_prod);
 
     let page : any = ProdutoDetalhesPage;
-    this.navCtrl.push(page, produto);
-
+    this.app.getRootNav().push(page, produto);
+    
+    /*let modal = this.modalCtrl.create(page, produto);
+    modal.present();*/
+    
     //this.rootPage = page.component;
 
   }

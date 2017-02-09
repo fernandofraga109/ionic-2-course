@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { ProdutosClienteService } from '../../providers/produtos-cliente-service';
 
 
@@ -15,6 +15,7 @@ export class ProdutoDetalhesPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public viewCtrl: ViewController,
               public produtosClienteService :ProdutosClienteService,
               public toastCtrl: ToastController) {
     this.produto = navParams;
@@ -28,53 +29,40 @@ export class ProdutoDetalhesPage {
 
   addProdutoCesta(produto) : void {
     
-    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
-      let toast = this.toastCtrl.create({
+    this.produtosClienteService.get(produto.prod_id).then((res) => {
+      
+      if (res !=null) {
+        let toast = this.toastCtrl.create({
         message: 'Produto já esta na cesta de compras.',
         duration: 3000
-      });
-      toast.present();
-    } else {
-      this.produtosClienteService.addProduto(produto);
-      
-      
-      let jsonEnvia : string = JSON.stringify(produto);
-      /*this.produtosClienteSqlService.set(produto.prod_id, jsonEnvia);
-      this.produtosClienteSqlService.get(produto.prod_id).then((res) => {
-          console.log(JSON.parse(res), 'agora vai');
-
-        }).catch((err) => {
-          console.log(err);
         });
-      
-      */
+        toast.present();
+        
+      } else {
+        this.produtosClienteService.addProduto(produto);
+        let toast = this.toastCtrl.create({
+          message: ''+ produto.prod_nome +' adicionado a cesta de compras.',
+          duration: 3000
+        });
+        toast.present();
+      } 
 
-      let toast = this.toastCtrl.create({
-        message: ''+ produto.prod_nome +' adicionado a cesta de compras.',
-        duration: 3000
+      }).catch((err) => {
+        console.log(err);
+        return false;
       });
-      toast.present();
-    }
+    
   }
   
   decrementaQtd(produto) : void {
-    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
-      this.produtosClienteService.decrementaQtdProduto(produto);
-    } else {
-        if (produto.quantidade > 1) {
-        this.produto.quantidade = produto.quantidade-1;
-      }
+    if (produto.quantidade > 1) {
+      this.produto.quantidade = produto.quantidade-1;
     }
+    
   }
   
   incrementaQtd(produto) : void {
-    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
-      this.produtosClienteService.incrementaQtdProduto(produto);
-    } else {
-    
-      console.log('incrmenta');
-      this.produto.quantidade = produto.quantidade+1;
-    }
+    this.produto.quantidade = produto.quantidade+1;
   }
   
 

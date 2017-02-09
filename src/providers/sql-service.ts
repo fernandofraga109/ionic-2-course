@@ -87,7 +87,8 @@ export abstract class SqlService {
   }
   
   update(key: string, value: any): Promise<any> {
-    return this.query('updade '+this.table+ ' set value = ?  where key = ?)', [value, key]);
+    console.log('update '+this.table+ ' set value = ?  where key = ?', [value, key]);
+    return this.query('update '+this.table+ ' set value = ?  where key = ? ', [value, key]);
   }
 
   /** REMOVE the value in the database for the given key. */

@@ -8,26 +8,66 @@ import { ProdutosClienteService } from '../../providers/produtos-cliente-service
   templateUrl: 'cesta.html'
 })
 export class CestaPage {
+  
+  produtos: any[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public produtosClienteService :ProdutosClienteService,
-              public alertCtrl: AlertController ) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CestaPaged');
+              public alertCtrl: AlertController ) {
+    this.produtos = [];
   }
 
+  
+   
+  
+  carregaProdutos() {
+    this.produtos = [];
+    this.produtosClienteService.getAll().then((res) => {
+      if (res !=null) {
+        
+       for (let i = 0; i < res.length; i++) {
+         console.log(i,"ENTROU NO ÇACO");
+       
+         this.produtos.push(JSON.parse(res[i].value));
+        }
+      } else {
+        console.log(res,"NENHUM PRODUTO");
+      } 
+
+      }).catch((err) => {
+        console.log(err);
+        return false;
+      });
+    
+  }
+ 
+  ionViewWillEnter() {
+    this.carregaProdutos();
+    console.log('ionViewDidLoad CestaPaged');
+  }
+  
+  ionViewDidLoad() {
+    this.carregaProdutos();
+    console.log('ionViewDidLoad CestaPaged');
+  }
+  
+  
+
   getProdutos() {
-    return this.produtosClienteService.getProdutos();
+    return this.produtos;
   }
   
   getQtdProdutos() {
-    return this.produtosClienteService.getQtdProdutos();
+    return this.produtos.length;
   }
   
   getTotalValorItens() {
-    return this.produtosClienteService.getTotalValorItens();
+    let total :number = 0.0;
+    for (let i = 0; i < this.produtos.length; i++) {
+        total = total +this.produtos[i].pf_valor;
+     }
+    return total
   }
   
   decrementaQtd(produto) : void {
@@ -45,7 +85,9 @@ export class CestaPage {
         {
           text: 'Confirmar',
           handler: () => {
-            this.produtosClienteService.removeProduto(produto);
+            this.produtosClienteService.remove(produto.prod_id);
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);  
+          
           }
         }
       ]
@@ -55,9 +97,10 @@ export class CestaPage {
       
     } else {
        
-      if (this.produtosClienteService.produtoJaNaCesta(produto)) {
-        this.produtosClienteService.decrementaQtdProduto(produto);
-      }
+      produto.quantidade = produto.quantidade-1; 
+      this.produtosClienteService.updateProduto(produto);
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      
     }
   }
   
@@ -77,6 +120,7 @@ export class CestaPage {
           text: 'Confirmar',
           handler: () => {
             this.produtosClienteService.removeTodosProdutos();
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);  
           }
         }
       ]
@@ -88,9 +132,9 @@ export class CestaPage {
   }
   
   incrementaQtd(produto) : void {
-    if (this.produtosClienteService.produtoJaNaCesta(produto)) {
-      this.produtosClienteService.incrementaQtdProduto(produto);
-    } 
+    produto.quantidade = produto.quantidade+1; 
+    this.produtosClienteService.updateProduto(produto);
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 }

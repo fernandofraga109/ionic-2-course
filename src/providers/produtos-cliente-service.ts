@@ -12,13 +12,18 @@ export class ProdutosClienteService extends SqlService {
   constructor(public http: Http, public platform: Platform) {
     super(platform, "produtoCesta");
     this.produtos = [];
-  }
+  } 
 
   addProduto(produto) {
     let jsonProduto : string = JSON.stringify(produto);
     this.set(produto.prod_id, jsonProduto);
     
     this.produtos.push(produto);
+  }
+  
+  updateProduto(produto) {
+    let jsonProduto : string = JSON.stringify(produto);
+    this.update(produto.prod_id, jsonProduto);
   }
 
   removeProduto(produto) {
@@ -31,6 +36,7 @@ export class ProdutosClienteService extends SqlService {
     this.produtos = [];
   }
 
+  /*  NAO USAR */
   produtoJaNaCesta(produto): boolean {
     let jaNaCesta: boolean = false;
     
@@ -75,22 +81,6 @@ export class ProdutosClienteService extends SqlService {
       }
     }
   }
-  
-  getTotalValorItens() {
-    let total :number = 0.0;
-    for (let i = 0; i < this.produtos.length; i++) {
-        total = total +this.produtos[i].pf_valor;
-     }
-    return total
-  }
 
-
-  getProdutos() {
-    return this.produtos;
-  }
-
-  getQtdProdutos() {
-    return this.produtos.length;
-  }
 
 }
