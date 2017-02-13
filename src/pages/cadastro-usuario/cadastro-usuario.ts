@@ -38,7 +38,18 @@ export class CadastroUsuarioPage {
         this.clienteService.cadastra('{"cadastro": '+jsonEnvia+'}')
         .then((res) => {
           let json = res.json();
-          console.log("Salvou Cliente!", json);
+          console.log("Salvou Cliente!", json.cliente.pin);
+          let jsonCliente: string = JSON.stringify( this.user );
+          this.clienteService.set(json.cliente.pin, jsonCliente);
+          
+          this.clienteService.get(json.cliente.pin).then((resp) => {
+              
+               console.log(resp, "volta do sql");
+
+              }).catch((err) => {
+                console.log(err);
+                return false;
+              });
           let alert = this.alertCtrl.create({
             title: 'Cadastro de Usuário',
             message: 'Cadastro efetuado com sucesso!',

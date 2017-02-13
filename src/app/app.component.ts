@@ -21,54 +21,88 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ClienteService } from '../providers/cliente-service';
 import { BuscaProdutoService } from '../providers/busca-produto-service';
 import { ProdutosClienteService } from '../providers/produtos-cliente-service';
+//models
+import { Cliente } from '../models/cliente';
 
 
 
-@Component({
-  templateUrl: 'app.html',
-  providers: [BuscaProdutoService, ClienteService, ProdutosClienteService]
+@Component( {
+    templateUrl: 'app.html',
+    providers: [BuscaProdutoService, ClienteService, ProdutosClienteService, Cliente]
 
 })
 export class MyApp {
-  rootPage = TabsPage;
-  pages: Array<{component: any, title: string, icon: string}>;
-  logado : boolean = true;
-  @ViewChild('menuContent') navCtrl : NavController
+    rootPage = TabsPage;
+    pages: Array<{ component: any, title: string, icon: string }>;
+    logado: boolean = false;
+    @ViewChild( 'menuContent' ) navCtrl: NavController
 
-  constructor(platform: Platform,
-              private menuCtrl: MenuController) {
+    constructor( platform: Platform,
+        private menuCtrl: MenuController,
+        public clienteService: ClienteService ) {
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-    });
+        platform.ready().then(() => {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            StatusBar.styleDefault();
+            Splashscreen.hide();
+        });
 
-    if (this.logado) {
-      this.pages = [
-        {component: PerfilPage, title: 'Perfil', icon: 'contact'},
-        {component: EnderecosPage, title: 'Meus Endereços', icon: 'pin'},
-        {component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'basket'},
-        {component: FaleConoscoPage, title: 'Fale Conosco', icon: 'call'},
-        {component: AjudaPage, title: 'Ajuda', icon: 'information'},
-        {component: ConfiguracoesPage, title: 'Configurações', icon: 'cog'},
-        {component: SairPage, title: 'Sair', icon: 'exit'}
-      ];
-    } else {
-      let page : any = LoginPage;
-      this.rootPage = page;
+        if ( this.logado ) {
+            this.pages = [
+                { component: PerfilPage, title: 'Perfil', icon: 'contact' },
+                { component: EnderecosPage, title: 'Meus Endereços', icon: 'pin' },
+                { component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'basket' },
+                { component: FaleConoscoPage, title: 'Fale Conosco', icon: 'call' },
+                { component: AjudaPage, title: 'Ajuda', icon: 'information' },
+                { component: ConfiguracoesPage, title: 'Configurações', icon: 'cog' },
+                { component: SairPage, title: 'Sair', icon: 'exit' }
+            ];
+        } else {
+            let page: any = LoginPage;
+            this.rootPage = page;
+        }
+
+        /*
+        this.clienteService.getAll().then(( res ) => {
+            if ( res != null ) {
+                console.log( 'CLIENTE LOGADO!' );
+                this.logado = true;
+            } else {
+                console.log( res, "NENHUM CLIENTE LOGADO" );
+                this.logado = false;
+            }
+            if ( this.logado ) {
+                this.pages = [
+                    { component: PerfilPage, title: 'Perfil', icon: 'contact' },
+                    { component: EnderecosPage, title: 'Meus Endereços', icon: 'pin' },
+                    { component: UltimosPedidosPage, title: 'Últimos Pedidos', icon: 'basket' },
+                    { component: FaleConoscoPage, title: 'Fale Conosco', icon: 'call' },
+                    { component: AjudaPage, title: 'Ajuda', icon: 'information' },
+                    { component: ConfiguracoesPage, title: 'Configurações', icon: 'cog' },
+                    { component: SairPage, title: 'Sair', icon: 'exit' }
+                ];
+            } else {
+                let page: any = LoginPage;
+                this.rootPage = page;
+            }
+            
+
+        }).catch(( err ) => {
+            console.log( err );
+        });
+        */
+        
     }
-  }
-  //Exemple action to class
-  clicked() : void {
-    console.log('I was clicked!');
-  }
+    //Exemple action to class
+    clicked(): void {
+        console.log( 'I was clicked!' );
+    }
 
-  openPage(page: any) : void {
-    console.log('Opening '+page.title);
-    this.navCtrl.push(page.component);
-    //this.rootPage = page.component;
-    this.menuCtrl.close();
-  }
+    openPage( page: any ): void {
+        console.log( 'Opening ' + page.title );
+        this.navCtrl.push( page.component );
+        //this.rootPage = page.component;
+        this.menuCtrl.close();
+    }
 }

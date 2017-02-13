@@ -7,19 +7,20 @@ import { SqlService } from './sql-service';
 @Injectable()
 export class ProdutosClienteService extends SqlService {
 
-  produtos: any[];
+    produtos: any[];
 
-  constructor(public http: Http, public platform: Platform) {
-    super(platform, "produtoCesta");
-    this.produtos = [];
-  } 
+    constructor( public http: Http,
+        public platform: Platform ) {
+        super( platform, "produtoCesta" );
+        this.produtos = [];
+    }
 
-  addProduto(produto) {
-    let jsonProduto : string = JSON.stringify(produto);
-    this.set(produto.prod_id, jsonProduto);
-    
-    
-  }
-  
+    addProduto( produto ) {
+        let jsonProduto: string = JSON.stringify( produto );
+        this.set( produto.prod_id, jsonProduto );
+
+
+    }
+
 
 }
