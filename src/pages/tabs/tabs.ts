@@ -31,13 +31,18 @@ export class TabsPage {
     return this.produtos.length;
   }
   
-  
-  
-   ionViewDidEnter() {
+  ionViewDidEnter() {
     this.mudouAba();
     console.log('ionV');
   }
   
+  
+/* 
+   ionViewWillEnter() {
+    this.mudouAba();
+    console.log('ionViewWillEnter tabPage');
+  }
+  */
   
   vaiParaCesta() {
     this.mudouAba();
@@ -46,13 +51,15 @@ export class TabsPage {
   }
   
   mudouAba() {
-    this.produtos = [];
+    console.log('CARREGANDO PRODUTOS');
+    this.produtos = []; 
     this.produtosClienteService.getAll().then((res) => {
       if (res !=null) {
-        
-       for (let i = 0; i < res.length; i++) {
-          this.produtos.push(JSON.parse(res[i].value));
+        this.produtos = [];  
+        for (let i = 0; i < res.length; i++) {
+            this.produtos.push(JSON.parse(res[i].value));
         }
+        console.log('CARREGOU!!!!!');
       } else {
         console.log(res,"NENHUM PRODUTO");
       } 

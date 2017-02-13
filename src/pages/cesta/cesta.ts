@@ -22,13 +22,14 @@ export class CestaPage {
    
   
   carregaProdutos() {
-    this.produtos = [];
+    console.log('CARREGANDO PRODUTOS');
     this.produtosClienteService.getAll().then((res) => {
       if (res !=null) {
-        
+       this.produtos = [];  
        for (let i = 0; i < res.length; i++) {
            this.produtos.push(JSON.parse(res[i].value));
        }
+        console.log('CARREGOU!');
       } else {
         console.log(res,"NENHUM PRODUTO");
       } 
@@ -41,7 +42,7 @@ export class CestaPage {
  
   ionViewWillEnter() {
     this.carregaProdutos();
-    console.log('ionViewDidLoad CestaPaged');
+    console.log('ionViewWillEnter CestaPage');
   }
   
 
