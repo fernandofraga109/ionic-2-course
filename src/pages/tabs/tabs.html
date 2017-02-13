@@ -16,7 +16,7 @@
 <ion-tabs color="primary">
   <ion-tab [root]="tab2Root" tabTitle="Buscar" tabIcon="search" (ionSelect)="mudouAba()" ></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="Codigo de Barras" tabIcon="barcode"  (ionSelect)="mudouAba()"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Cesta" tabIcon="basket"  tabBadge="{{produtos.length}}" tabBadgeStyle="secondary"  (ionSelect)="mudouAba()"></ion-tab>
+  <ion-tab tabTitle="Cesta" tabIcon="basket"  tabBadge="{{produtos.length}}" tabBadgeStyle="secondary"  (ionSelect)="vaiParaCesta()"></ion-tab>
 
     <!--<ion-tab  *ngFor="let t of tabs"  [root]="{{ t.component }}"    tabTitle="{{ t.title }}" tabIcon="{{ t.icon }}"></ion-tab>-->
 </ion-tabs>

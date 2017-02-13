@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { App } from 'ionic-angular';
 import { BuscaPage } from '../busca/busca';
 import { CodigoBarrasPage } from '../codigo-barras/codigo-barras';
 import { CestaPage } from '../cesta/cesta';
@@ -18,7 +18,8 @@ export class TabsPage {
   qtdProdutos: number = 0;
   produtos: any[];
 
-  constructor(public produtosClienteService :ProdutosClienteService) {
+  constructor(public produtosClienteService :ProdutosClienteService,
+              private app: App) {
     this.tabs = [
       {component: BuscaPage, title: 'Buscar', icon: 'search'},
       {component: CestaPage, title: 'Cesta', icon: 'basket'}
@@ -35,6 +36,13 @@ export class TabsPage {
    ionViewDidEnter() {
     this.mudouAba();
     console.log('ionV');
+  }
+  
+  
+  vaiParaCesta() {
+    this.mudouAba();
+    let page : any = CestaPage;
+    this.app.getRootNav().push(page);
   }
   
   mudouAba() {
